@@ -15,6 +15,7 @@ A modern, responsive authentication system built using **Flask**, featuring logi
 * ✅ Responsive UI (Desktop, Tablet, Mobile)
 * ✅ Modern Glassmorphism Interface
 * ✅ Flash Messages and Feedback System
+* ✅ Vercel Web Analytics Integration
 
 ---
 
@@ -158,6 +159,27 @@ This project demonstrates:
 * User profile management
 * PostgreSQL database integration
 * Deployment (Render / Railway / Vercel)
+
+---
+
+## 📊 Vercel Web Analytics
+
+This project is integrated with Vercel Web Analytics to track page views and visitor data. The analytics script is automatically loaded on all pages when deployed to Vercel.
+
+### How it works
+
+* Analytics tracking is enabled via the Vercel Insights script loaded in all HTML templates
+* Once deployed to Vercel, visit your project's **Analytics** tab to view data
+* No additional configuration needed - analytics automatically track page views
+
+### Enabling Analytics on Vercel
+
+1. Deploy your app to Vercel
+2. Go to your [Vercel dashboard](https://vercel.com/dashboard)
+3. Select your project and click the **Analytics** tab
+4. Click **Enable** to start tracking visitors
+
+For more information, visit the [Vercel Analytics documentation](https://vercel.com/docs/analytics).
 
 ---
 
