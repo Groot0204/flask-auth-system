@@ -1,0 +1,56 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Database
+database.db
+*.db
+
+# Environment variables
+.env
+
+# Flask instance folder
+instance/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+
+# Python build files
+build/
+dist/
+*.egg-info/
+
+# Coverage reports
+.coverage
+htmlcov/
+
+# Pytest
+.pytest_cache/
+
+# Node (if used later)
+node_modules/
+
+# Mac system files
+.AppleDouble
+.LSOverride
+
+# Background images (optional if large)
+# static/bg.jpg
