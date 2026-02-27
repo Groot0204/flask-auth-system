@@ -245,7 +245,7 @@ h1 {
     .sign-in {
         left: 0;
         width: 100%;
-        transform: translateX(0);
+        transform: translateY(0);
         opacity: 1;
         z-index: 2;
     }
@@ -254,22 +254,19 @@ h1 {
     .sign-up {
         left: 0;
         width: 100%;
-        transform: translateX(100%);
-        opacity: 0;
-        z-index: 1;
-    }
-
-    /* Show Sign Up when active */
-    .container.active .sign-up {
-        transform: translateX(0);
+        transform: translateY(100%);
         opacity: 1;
         z-index: 5;
     }
 
+    /* Show Sign Up when active */
+    .container.active .sign-up {
+        transform: translateY(0) !important;
+    }
+
     /* Hide Sign In when active */
     .container.active .sign-in {
-        transform: translateX(-100%);
-        opacity: 0;
+        transform: translateY(-100%) !important;
     }
 
     /* Hide toggle panel on mobile */
@@ -314,17 +311,20 @@ h1 {
     }
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
+
     .sign-in,
     .sign-up {
         transition: transform 1.0s ease, opacity 1.0s ease;
     }
 
-}
+} */
 
 .mobile-toggle {
-    margin-top: 15px;
-    font-size: 14px;
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+    text-align: center;
     color: #fff;
 }
 
