@@ -38,11 +38,8 @@ serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-
     username = db.Column(db.String(100), unique=True, nullable=False)
-
     email = db.Column(db.String(150), unique=True, nullable=False)
-
     password = db.Column(db.String(200), nullable=False)
 
 
@@ -53,6 +50,7 @@ def load_user(user_id):
 #============================
 # Password Strength Validation
 #============================
+
 def is_strong_password(password):
     if len(password) < 8:
         return False
@@ -141,6 +139,7 @@ def login():
 # =============================
 # Dashboard (Protected)
 # =============================
+
 @app.route('/dashboard')
 @login_required
 def dashboard():
@@ -150,6 +149,7 @@ def dashboard():
 # =============================
 # Logout
 # =============================
+
 @app.route('/logout')
 @login_required
 def logout():
@@ -161,6 +161,7 @@ def logout():
 # =============================
 # Forgot Password
 # =============================
+
 @app.route('/forgot-password', methods=['GET', 'POST'])
 def forgot_password():
     if request.method == 'POST':
@@ -185,6 +186,7 @@ def forgot_password():
 # =============================
 # Reset Password
 # =============================
+
 @app.route('/reset-password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
     try:
@@ -209,6 +211,7 @@ def reset_password(token):
 # =============================
 # Run App
 # =============================
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()   # Create DB if not exists
