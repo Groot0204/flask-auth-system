@@ -43,14 +43,15 @@ setTimeout(() => {
 }, 3000);
 
 document.querySelectorAll("form").forEach(form => {
-    form.addEventListener("submit", () => {
-
-        const btn = form.querySelector("button[type='submit']");
-
-        if(btn){
+    form.addEventListener("submit", function (e) {
+        const btn = this.querySelector("button[type='submit']");
+        if (btn) {
             btn.innerText = "Please wait...";
-            btn.disabled = true;
-        }
 
+            // disable AFTER small delay so submit still works
+            setTimeout(() => {
+                btn.disabled = true;
+            }, 100);
+        }
     });
 });

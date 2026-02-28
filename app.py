@@ -112,7 +112,7 @@ def register():
     db.session.add(new_user)
     db.session.commit()
 
-    flash("Account created successfully!")
+    flash("Account created successfully!", "success")
     return redirect(url_for('home'))
 
 
@@ -143,6 +143,7 @@ def login():
 @app.route('/dashboard')
 @login_required
 def dashboard():
+    # flash("Login successful!", "success") # not needed since we have button text change, but can be used if you want a message too
     return render_template("dashboard.html")
 
 
