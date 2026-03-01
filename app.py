@@ -11,6 +11,7 @@ from flask_login import (
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import or_
 from itsdangerous import URLSafeTimedSerializer
+import os
 import re
 
 
@@ -20,7 +21,7 @@ import re
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_super_secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("POSTGRES_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -45,7 +46,7 @@ class User(UserMixin, db.Model):
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    return db.session.get(User, int(user_id))
 
 #============================
 # Password Strength Validation
@@ -210,10 +211,16 @@ def reset_password(token):
 
 
 # =============================
-# Run App
+# Create tables automatically (IMPORTANT for Vercel)
+# =============================
+
+with app.app_context():
+    db.create_all()
+
+
+# =============================
+# Run locally only
 # =============================
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()   # Create DB if not exists
     app.run(debug=True)
