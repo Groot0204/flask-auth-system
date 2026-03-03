@@ -218,6 +218,17 @@ def reset_password(token):
         return redirect(url_for('home'))
     return render_template("reset_password.html")
 
+# =============================
+# DataBase connection test route (optional)
+# =============================
+
+@app.route('/test-db')
+def test_db():
+    try:
+        db.session.execute("SELECT 1")
+        return "Database connection successful!"
+    except Exception as e:
+        return f"Database connection failed: {str(e)}"
 
 # =============================
 # Run App
