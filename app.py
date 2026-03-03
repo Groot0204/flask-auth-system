@@ -221,6 +221,7 @@ def reset_password(token):
 # =============================
 # DataBase connection test route (optional)
 # =============================
+from sqlalchemy import text
 
 @app.route('/test-db')
 def test_db():
