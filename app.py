@@ -52,8 +52,8 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
 
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -223,15 +223,15 @@ def reset_password(token):
 # =============================
 # DataBase connection test route (optional)
 # =============================
-from sqlalchemy import text
+# from sqlalchemy import text
 
-@app.route("/test-db")
-def test_db():
-    try:
-        db.session.execute(text("SELECT 1"))
-        return "Database Connected Successfully !"
-    except Exception as e:
-        return f"Database Error : {str(e)}"
+# @app.route("/test-db")
+# def test_db():
+#     try:
+#         db.session.execute(text("SELECT 1"))
+#         return "Database Connected Successfully !"
+#     except Exception as e:
+#         return f"Database Error : {str(e)}"
 
 # =============================
 # Run App
