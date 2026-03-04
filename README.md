@@ -1,87 +1,175 @@
-# 🔐 Flask Authentication System
+# 🔐 Flask Authentication System (Flask + Vercel + PostgreSQL)
 
-A modern, responsive authentication system built using **Flask**, featuring login, registration, password reset, and a clean glassmorphism UI. This project demonstrates full-stack authentication logic with secure password handling and responsive frontend design.
+A **production-ready authentication system built with Flask** that supports user registration, login, logout, and password reset functionality.
 
----
-
-## 🚀 Live Features
-
-* ✅ User Registration
-* ✅ Login with Username or Email
-* ✅ Secure Password Hashing
-* ✅ Forgot Password with Reset Token
-* ✅ Password Strength Validation
-* ✅ Session Management
-* ✅ Responsive UI (Desktop, Tablet, Mobile)
-* ✅ Modern Glassmorphism Interface
-* ✅ Flash Messages and Feedback System
-* ✅ Vercel Web Analytics Integration
+This application is deployed using **Vercel serverless functions** and uses **Neon PostgreSQL** as the cloud database.
 
 ---
 
-## 🛠 Tech Stack
+# 🚀 Live Demo
 
-**Backend**
-
-* Python
-* Flask
-* Flask-Login
-* Flask-SQLAlchemy
-* Werkzeug Security
-
-**Frontend**
-
-* HTML5
-* CSS3 (Glassmorphism UI)
-* JavaScript (Responsive toggle logic)
-
-**Database**
-
-* SQLite (can be upgraded to PostgreSQL)
+🌐 **Live Website**
+https://flask-auth-system-groot.vercel.app
 
 ---
 
-## 📁 Project Structure
+# ✨ Features
+
+✔ User Registration
+✔ Secure Login / Logout
+✔ Login using **username or email**
+✔ Password hashing using `Werkzeug`
+✔ Password reset system with secure tokens
+✔ Strong password validation rules
+✔ Protected dashboard route
+✔ Session management with **Flask-Login**
+✔ PostgreSQL cloud database (Neon)
+✔ Serverless deployment on **Vercel**
+
+---
+
+# 🛠 Tech Stack
+
+| Technology            | Purpose                             |
+| --------------------- | ----------------------------------- |
+| **Flask**             | Backend Web Framework               |
+| **Flask-Login**       | Authentication & session management |
+| **Flask-SQLAlchemy**  | ORM for database operations         |
+| **PostgreSQL (Neon)** | Cloud database                      |
+| **psycopg2**          | PostgreSQL adapter                  |
+| **Werkzeug**          | Password hashing                    |
+| **itsdangerous**      | Secure token generation             |
+| **Vercel**            | Serverless deployment platform      |
+
+---
+
+# 📂 Project Structure
 
 ```
-flask-auth-system/
+flask-auth-system
 │
 ├── app.py
-├── database.db
 ├── requirements.txt
+├── vercel.json
+├── README.md
+├── .gitignore
 │
-├── templates/
+├── templates
 │   ├── base.html
 │   ├── dashboard.html
 │   ├── forgot_password.html
 │   └── reset_password.html
 │
-├── static/
-│   ├── style.css
-│   ├── script.js
-│   └── bg.jpg
-│
-└── README.md
+└── static
+    ├── style.css
+    ├── script.js
+    └── bg.jpg
 ```
 
 ---
 
-## ⚙️ Installation & Setup
+# 📸 Application Screenshots
 
-### 1. Clone the repository
+*(You can add screenshots here for better presentation)*
+
+### Login Page
+
+![Login Page](assets/login.png)
+![Login Page](assets/mobile-login.png)
+
+### Registration Page
+
+![Register Page](assets/register.png)
+![Register Page](assets/mobile-register.png)
+
+### Dashboard
+
+![Dashboard](assets/dashboard.png)
+![Dashboard](assets/mobile-dashboard.png)
+
+---
+
+# 🏗 System Architecture
+
+```
+User Browser
+      ↓
+Vercel Serverless Flask Application
+      ↓
+Neon PostgreSQL Cloud Database
+```
+
+Flow:
+
+1. User sends request from browser
+2. Flask serverless function processes request
+3. SQLAlchemy communicates with PostgreSQL
+4. Database returns data to Flask
+5. Flask renders response to user
+
+---
+
+# ⚙️ Environment Variables
+
+The following environment variables must be configured in **Vercel → Project Settings → Environment Variables**
+
+| Variable       | Description                                    |
+| -------------- | ---------------------------------------------- |
+| `DATABASE_URL` | PostgreSQL connection string from Neon         |
+| `SECRET_KEY`   | Secret key used for session and token security |
+
+Example:
+
+```
+DATABASE_URL=postgresql://username:password@host/dbname?sslmode=require
+SECRET_KEY=your_secure_secret_key
+```
+
+---
+
+# 💾 Database
+
+The application uses **PostgreSQL (Neon)**.
+
+### User Table
+
+| Field    | Type          |
+| -------- | ------------- |
+| id       | Integer       |
+| username | String        |
+| email    | String        |
+| password | Hashed String |
+
+Passwords are stored using **secure hashing**, never in plain text.
+
+---
+
+# 🔐 Security Features
+
+• Password hashing using `generate_password_hash()`
+• Password verification using `check_password_hash()`
+• Secure password reset tokens using `itsdangerous`
+• Strong password validation rules
+• Environment variable protection for sensitive data
+
+---
+
+# 🧪 Running Locally
+
+### 1️⃣ Clone the repository
 
 ```
 git clone https://github.com/YOUR_USERNAME/flask-auth-system.git
 cd flask-auth-system
 ```
 
-### 2. Create virtual environment
+### 2️⃣ Create virtual environment
 
 ```
 python -m venv venv
 ```
 
-Activate environment:
+### 3️⃣ Activate environment
 
 **Windows**
 
@@ -89,113 +177,82 @@ Activate environment:
 venv\Scripts\activate
 ```
 
-**Mac/Linux**
+**Mac / Linux**
 
 ```
 source venv/bin/activate
 ```
 
----
-
-### 3. Install dependencies
+### 4️⃣ Install dependencies
 
 ```
 pip install -r requirements.txt
 ```
 
----
+### 5️⃣ Configure environment variables
 
-### 4. Run the application
+```
+SECRET_KEY=your_secret_key
+DATABASE_URL=your_database_url
+```
+
+### 6️⃣ Run the application
 
 ```
 python app.py
 ```
 
-Open in browser:
+---
 
-```
-http://127.0.0.1:5000
-```
+# 🌐 Deployment
+
+The project is deployed using **Vercel serverless Python functions**.
+
+Deployment steps:
+
+1. Push project to GitHub
+2. Import repository into Vercel
+3. Configure environment variables
+4. Deploy application
 
 ---
 
-## 🔒 Security Features
+# 📚 Key Learnings
 
-* Password hashing using Werkzeug
-* Secure session handling
-* Token-based password reset
-* Form validation
-* Protected routes with Flask-Login
+Through this project:
 
----
-
-## 📱 Responsive Design
-
-Fully optimized for:
-
-* Desktop
-* Tablet
-* Mobile devices
+* Learned how to deploy **Flask apps on Vercel**
+* Implemented **authentication using Flask-Login**
+* Connected Flask with **PostgreSQL cloud database**
+* Managed **environment variables for security**
+* Implemented **secure password hashing**
+* Handled **serverless deployment debugging**
+* Built a **production-ready authentication system**
 
 ---
 
-## 🎯 Learning Outcomes
+# 🚀 Future Improvements
 
-This project demonstrates:
+Possible upgrades:
 
-* Full authentication workflow
-* Flask backend integration
-* Secure password management
-* Responsive frontend development
-* Session and user management
-
----
-
-## 🚀 Future Improvements
-
-* Email-based password reset (SMTP integration)
-* Email verification system
-* Remember Me functionality
-* User profile management
-* PostgreSQL database integration
-* Deployment (Render / Railway / Vercel)
+• Email sending for password reset
+• JWT authentication system
+• User profile management
+• Admin dashboard
+• REST API version of authentication
+• Database migrations using Flask-Migrate
+• Docker containerization
 
 ---
 
-## 📊 Vercel Web Analytics
+# 👨‍💻 Author
 
-This project is integrated with Vercel Web Analytics to track page views and visitor data. The analytics script is automatically loaded on all pages when deployed to Vercel.
+**Rupesh**
 
-### How it works
-
-* Analytics tracking is enabled via the Vercel Insights script loaded in all HTML templates
-* Once deployed to Vercel, visit your project's **Analytics** tab to view data
-* No additional configuration needed - analytics automatically track page views
-
-### Enabling Analytics on Vercel
-
-1. Deploy your app to Vercel
-2. Go to your [Vercel dashboard](https://vercel.com/dashboard)
-3. Select your project and click the **Analytics** tab
-4. Click **Enable** to start tracking visitors
-
-For more information, visit the [Vercel Analytics documentation](https://vercel.com/docs/analytics).
+Python Developer | Web Developer
 
 ---
 
-## 👨‍💻 Author
+# 📄 License
 
-**Rupesh Patil**
-
-* GitHub: https://github.com/Groot0204
-* Portfolio: (Add your portfolio link here)
-
----
-
-## 📜 License
-
-This project is open-source and available under the MIT License.
-
----
-
-⭐ If you found this project helpful, please consider giving it a star!
+This project is licensed under the **MIT License**.
