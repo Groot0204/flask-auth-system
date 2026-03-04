@@ -3,14 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Virtual environment
+# Virtual environments
 venv/
 env/
 ENV/
-
-# Database
-database.db
-*.db
 
 # Environment variables
 .env
@@ -52,5 +48,5 @@ node_modules/
 .AppleDouble
 .LSOverride
 
-# Background images (optional if large)
+# Optional large assets
 # static/bg.jpg
