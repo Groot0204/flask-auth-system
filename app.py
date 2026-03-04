@@ -11,6 +11,7 @@ from flask_login import (
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import or_
 from itsdangerous import URLSafeTimedSerializer
+import os
 import re
 
 
@@ -19,8 +20,17 @@ import re
 # =============================
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your_super_secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
+
+database_url = os.environ.get("DATABASE_URL")
+
+if database_url and database_url.startswith("postgres://"):
+    database_url = database_url.replace("postgres://", "postgresql://", 1)
+
+if not database_url:
+    raise RuntimeError("DATABASE_URL is not set")
+
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -208,12 +218,21 @@ def reset_password(token):
         return redirect(url_for('home'))
     return render_template("reset_password.html")
 
+# =============================
+# DataBase connection test route (optional)
+# =============================
+
+@app.route('/test-db')
+def test_db():
+    try:
+        db.session.execute("SELECT 1")
+        return "Database connection successful!"
+    except Exception as e:
+        return f"Database connection failed: {str(e)}"
 
 # =============================
 # Run App
 # =============================
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()   # Create DB if not exists
     app.run(debug=True)
