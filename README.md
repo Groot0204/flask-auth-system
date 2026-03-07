@@ -25,21 +25,23 @@ https://flask-auth-system-groot.vercel.app
 ✔ Session management with **Flask-Login**
 ✔ PostgreSQL cloud database (Neon)
 ✔ Serverless deployment on **Vercel**
+✔ **Vercel Web Analytics** for visitor tracking and insights
 
 ---
 
 # 🛠 Tech Stack
 
-| Technology            | Purpose                             |
-| --------------------- | ----------------------------------- |
-| **Flask**             | Backend Web Framework               |
-| **Flask-Login**       | Authentication & session management |
-| **Flask-SQLAlchemy**  | ORM for database operations         |
-| **PostgreSQL (Neon)** | Cloud database                      |
-| **psycopg2**          | PostgreSQL adapter                  |
-| **Werkzeug**          | Password hashing                    |
-| **itsdangerous**      | Secure token generation             |
-| **Vercel**            | Serverless deployment platform      |
+| Technology              | Purpose                             |
+| ----------------------- | ----------------------------------- |
+| **Flask**               | Backend Web Framework               |
+| **Flask-Login**         | Authentication & session management |
+| **Flask-SQLAlchemy**    | ORM for database operations         |
+| **PostgreSQL (Neon)**   | Cloud database                      |
+| **psycopg2**            | PostgreSQL adapter                  |
+| **Werkzeug**            | Password hashing                    |
+| **itsdangerous**        | Secure token generation             |
+| **Vercel**              | Serverless deployment platform      |
+| **Vercel Web Analytics**| Website analytics and visitor insights|
 
 ---
 
@@ -214,6 +216,46 @@ Deployment steps:
 2. Import repository into Vercel
 3. Configure environment variables
 4. Deploy application
+
+---
+
+# 📊 Vercel Web Analytics
+
+This application integrates **Vercel Web Analytics** to track visitor behavior and page views.
+
+### Features
+
+✅ Automatic page view tracking
+✅ Real-time visitor analytics
+✅ Performance insights
+✅ Privacy-friendly (no cookies required)
+✅ GDPR compliant
+
+### Setup
+
+Web Analytics is already integrated into all pages via the tracking script. To enable analytics in your Vercel dashboard:
+
+1. Go to your [Vercel Dashboard](https://vercel.com/dashboard)
+2. Select your project
+3. Click the **Analytics** tab
+4. Click **Enable** to activate Web Analytics
+
+Once enabled, you'll be able to view:
+- Page views and unique visitors
+- Top pages and referrers
+- Geographic distribution of visitors
+- Device and browser statistics
+
+The analytics script is injected into all HTML templates using the recommended HTML implementation:
+
+```html
+<script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+```
+
+**Note:** Analytics data will be available in your dashboard after deployment and will start tracking once visitors access your site.
 
 ---
 
